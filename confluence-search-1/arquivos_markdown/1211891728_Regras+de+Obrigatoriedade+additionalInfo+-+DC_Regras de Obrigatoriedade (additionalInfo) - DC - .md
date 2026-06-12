@@ -1,0 +1,17 @@
+---
+                            title: "Regras de Obrigatoriedade (additionalInfo) - DC - Área do Desenvolvedor - Open Finance Brasil - Área do Desenvolvedor"
+                            paginaId: "1211891728_Regras+de+Obrigatoriedade+additionalInfo+-+DC"
+                            url: "https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/1211891728/Regras+de+Obrigatoriedade+additionalInfo+-+DC"
+                            source: "Open Finance Brasil Confluence"
+                            ---
+
+                            # Regras de Obrigatoriedade (additionalInfo) - DC - Área do Desenvolvedor - Open Finance Brasil - Área do Desenvolvedor
+
+                            Câmbio - Regras de Obrigatoriedade (additionalInfo)
+Cartão de Crédito - Regras de Obrigatoriedade (additionalInfo)
+Consentimento - Regras de Obrigatoriedade (additionalInfo)
+Contas - Regras de Obrigatoriedade (additionalInfo)
+Dados Cadastrais - Regras de Obrigatoriedade (additionalInfo)
+Investimentos - Regras de Obrigatoriedade (additionalInfo)
+Operações de Crédito - Regras de Obrigatoriedade (additionalInfo)
+Recursos - Regras de Obrigatoriedade (additionalInfo)

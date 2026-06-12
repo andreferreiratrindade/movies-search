@@ -1,0 +1,24 @@
+---
+                            title: "Guia de Operação do Diretório Central. - Área do Desenvolvedor - Open Finance Brasil - Área do Desenvolvedor"
+                            paginaId: "941817857_Guia+de+Opera+o+do+Diret+rio+Central."
+                            url: "https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/941817857/Guia+de+Opera+o+do+Diret+rio+Central."
+                            source: "Open Finance Brasil Confluence"
+                            ---
+
+                            # Guia de Operação do Diretório Central. - Área do Desenvolvedor - Open Finance Brasil - Área do Desenvolvedor
+
+                            Sumário
+Diretório de participantes.
+Organização.
+Como participar do Open Finance?
+Papéis regulatórios.
+Usuários e contatos de notificação.
+Certificado de assinatura.
+Organizações provedoras de dados (transmissoras/detentoras)
+Organizações consumidoras de dados e serviços (receptoras/iniciadoras)
+Regras e obrigações das instituições participantes do Open Finance Brasil
+Orientações gerais para utilização do guia por modalidade de participação
+Open
+O registro no Diretório de participantes em ambiente de produção deve ocorrer apenas após todas as etapas de desenvolvimento e validações de suas publicações técnicas em ambiente
+sandbox
+. O registro em produção habilita a organização ao monitoramento pela Associação e verificação do Banco Central do Brasil

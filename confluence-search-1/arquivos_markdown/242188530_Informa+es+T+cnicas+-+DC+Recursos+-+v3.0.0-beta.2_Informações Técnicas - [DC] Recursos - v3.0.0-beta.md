@@ -1,0 +1,13 @@
+---
+                            title: "Informações Técnicas - [DC] Recursos - v3.0.0-beta.2 - Área do Desenvolvedor - Open Finance Brasil - Área do Desenvolvedor"
+                            paginaId: "242188530_Informa+es+T+cnicas+-+DC+Recursos+-+v3.0.0-beta.2"
+                            url: "https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/242188530/Informa+es+T+cnicas+-+DC+Recursos+-+v3.0.0-beta.2"
+                            source: "Open Finance Brasil Confluence"
+                            ---
+
+                            # Informações Técnicas - [DC] Recursos - v3.0.0-beta.2 - Área do Desenvolvedor - Open Finance Brasil - Área do Desenvolvedor
+
+                            Informação Técnica
+Abrir informação técnica
+Especificação em OAS 3.0
+Download da Especificação (OAS 3.0)

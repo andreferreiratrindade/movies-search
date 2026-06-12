@@ -1,0 +1,29 @@
+---
+                            title: "[DA] API - Credenciamento - Área do Desenvolvedor - Open Finance Brasil - Área do Desenvolvedor"
+                            paginaId: "17368974_DA+API+-+Credenciamento"
+                            url: "https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/17368974/DA+API+-+Credenciamento"
+                            source: "Open Finance Brasil Confluence"
+                            ---
+
+                            # [DA] API - Credenciamento - Área do Desenvolvedor - Open Finance Brasil - Área do Desenvolvedor
+
+                            v1.1.0 - [DA] Credenciamento
+Informações Gerais - [DA] Credenciamento - v1.1.0
+Informações Técnicas - [DA] Credenciamento - v1.1.0
+Changelog - [DA] Credenciamento - v1.1.0 - v1.0.1
+Histórico de Especificações - [DA] Credenciamento
+v1.0.0-rc1.0 - Credenciamento
+Informações Gerais - Credenciamento - v1.0.0-rc1.0
+Informações Técnicas - Credenciamento - v1.0.0-rc1.0
+v1.0.0-rc2.0 - Credenciamento
+Informações Gerais - Credenciamento - v1.0.0-rc2.0
+Informações Técnicas - Credenciamento - v1.0.0-rc2.0
+Changelog - Credenciamento - v1.0.0-rc2.0
+v1.0.0 - [DA] Credenciamento
+Informações Gerais - [DA] Credenciamento - v1.0.0
+Informações Técnicas - [DA] Credenciamento - v1.0.0
+Changelog - [DA] Credenciamento - v1.0.0
+v1.0.1 - [DA] Credenciamento
+Informações Gerais - [DA] Credenciamento - v1.0.1
+Informações Técnicas - [DA] Credenciamento - v1.0.1
+Changelog - [DA] Credenciamento - v1.0.1 - v1.0.0

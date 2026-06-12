@@ -1,0 +1,15 @@
+---
+                            title: "Especificações por domínio - Dados Cadastrais e Transacionais - Área do Desenvolvedor - Open Finance Brasil - Área do Desenvolvedor"
+                            paginaId: "1279426561_Especifica+es+por+dom+nio+-+Dados+Cadastrais+e+Transacionais"
+                            url: "https://openfinancebrasil.atlassian.net/wiki/spaces/OF/pages/1279426561/Especifica+es+por+dom+nio+-+Dados+Cadastrais+e+Transacionais"
+                            source: "Open Finance Brasil Confluence"
+                            ---
+
+                            # Especificações por domínio - Dados Cadastrais e Transacionais - Área do Desenvolvedor - Open Finance Brasil - Área do Desenvolvedor
+
+                            Dados Cadastrais e Transacionais
+Campos Obrigatórios e Opcionais - DC
+Regras de Obrigatoriedade (additionalInfo) - DC
+Regras de Validação - DC
+Regras de Descarte - DC
+Jornada Otimizada - DC
