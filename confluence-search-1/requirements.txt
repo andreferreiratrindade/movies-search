@@ -1,15 +1,16 @@
-# Core LlamaIndex packages
-llama-index>=0.10.0
-llama-index-readers-confluence>=0.1.0
-llama-index-vector-stores-chroma>=0.1.5
-llama-index-llms-ollama>=0.1.0
-llama-index-embeddings-ollama>=0.1.0
 
 # Database vector store
 chromadb>=0.5.0
+ollama==0.4.0
 
 # Underlying utilities needed by data loaders and parsers
 atlassian-python-api>=3.41.0
 beautifulsoup4>=4.12.0
 requests>=2.31.0
 pandas
+
+fastapi==0.110.0
+uvicorn==0.28.0
+sentence-transformers==2.5.1
+
+numpy<2.0.0
