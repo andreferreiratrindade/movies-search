@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open Finance Brasil - Assistente de Arquitetura</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-gray-100 min-h-screen flex flex-col justify-between">
+
+    <header class="border-b border-gray-800 bg-gray-900/50 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <span class="text-2xl">🧠</span>
+                <div>
+                    <h1 class="text-lg font-bold tracking-tight text-white">Open Finance AI</h1>
+                    <p class="text-xs text-gray-400">Assistente Técnico de Arquitetura</p>
+                </div>
+            </div>
+            <span class="px-2.5 py-0.5 text-xs font-medium bg-emerald-500/10 text-emerald-400 rounded-full border border-emerald-500/20">Local LLM Active</span>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-4xl w-full mx-auto px-4 py-8">
+
+        <div class="bg-gray-800/40 border border-gray-800 rounded-2xl p-6 backdrop-blur mb-8 shadow-xl">
+            <h2 class="text-sm font-semibold uppercase tracking-wider text-gray-400 mb-4">Consulte a Documentação</h2>
+            <form id="searchForm" class="space-y-4">
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <div class="relative flex-grow">
+                        <textarea
+                            type="textarea"
+                            id="queryInput"
+                            rows="5" cols="40"
+                            placeholder="Ex: Como funciona o fluxo de compartilhamento de dados do Open Finance?"
+                            required
+                            class="w-full bg-gray-950/80 border border-gray-700/60 rounded-xl py-3.5 pl-4 pr-4 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all shadow-inner"
+                        > </textarea>
+                    </div>
+
+
+
+                    <button
+                        type="submit"
+                        class="bg-indigo-600 hover:bg-indigo-500 text-white font-medium rounded-xl px-5 py-3.5 transition-colors shadow-lg flex items-center justify-center space-x-2 shrink-0"
+                        title="Enviar Pergunta"
+                    >
+                        <span>Buscar</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <div id="loadingState" class="hidden flex flex-col items-center justify-center py-12 space-y-4">
+            <div class="animate-spin rounded-full h-8 w-8 border-2 border-indigo-500 border-t-transparent"></div>
+            <p class="text-sm text-gray-400 animate-pulse">Consultando ChromaDB e processando resposta via Gemma3...</p>
+        </div>
+
+        <div id="resultPanel" class="hidden space-y-6">
+
+            <div class="bg-gray-800/30 border border-gray-800 rounded-2xl p-6 shadow-md">
+                <div class="flex items-center space-x-2 text-indigo-400 font-semibold mb-3 text-sm">
+                    <span>✨</span>
+                    <span>Resposta do Assistente</span>
+                </div>
+                <p id="aiAnswer" class="text-gray-200 text-sm leading-relaxed whitespace-pre-wrap"></p>
+            </div>
+
+            <div class="space-y-3">
+                <h3 class="text-xs font-semibold uppercase tracking-wider text-gray-400 px-1">Fontes Utilizadas no Contexto</h3>
+                <div id="sourcesContainer" class="grid gap-3 sm:grid-cols-1 md:grid-cols-2">
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer class="border-t border-gray-800 text-center py-4 text-xs text-gray-500">
+        RAG Platform Engine • Conectado à API local executando Uvicorn
+    </footer>
+
+    <script>
+        const API_BASE_URL = "http://localhost:8000/search";
+        const FRONTEND_TIMEOUT_MS = 180000; // <-- Set timeout to 3 minutes (180,000 ms)
+
+        document.getElementById('searchForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const queryInput = document.getElementById('queryInput');
+            const loadingState = document.getElementById('loadingState');
+            const resultPanel = document.getElementById('resultPanel');
+            const aiAnswer = document.getElementById('aiAnswer');
+            const sourcesContainer = document.getElementById('sourcesContainer');
+
+            const queryText = queryInput.value.trim();
+            if (!queryText) return;
+
+
+
+            // UI Transition to Loading State
+            loadingState.classList.remove('hidden');
+            resultPanel.classList.add('hidden');
+            sourcesContainer.innerHTML = '';
+
+            // --- TIMEOUT LOGIC SETUP ---
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), FRONTEND_TIMEOUT_MS);
+
+            try {
+                // Dynamically pass the user's limit parameter to the FastAPI backend
+                const url = `${API_BASE_URL}?query=${encodeURIComponent(queryText)}`;
+
+                const response = await fetch(url, { signal: controller.signal });
+
+                clearTimeout(timeoutId);
+
+                if (!response.ok) {
+                    throw new Error(`HTTP network error! Status: ${response.status}`);
+                }
+
+                const data = await response.json();
+
+                aiAnswer.textContent = data.ai_answer || "Nenhuma resposta gerada pelo modelo.";
+
+                if (data.referenced_sources && data.referenced_sources.length > 0) {
+                    data.referenced_sources.forEach(source => {
+                        const card = document.createElement('div');
+                        card.className = "bg-gray-950/40 border border-gray-800/80 hover:border-gray-700 rounded-xl p-4 transition-all flex flex-col justify-between";
+
+                        card.innerHTML = `
+                            <div>
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="px-2 py-0.5 text-[10px] font-semibold bg-gray-800 text-gray-300 rounded">Fonte [${source.source_index}]</span>
+                                    <span class="text-[11px] text-gray-500">Dist: ${source.distances.toFixed(4)}</span>
+                                </div>
+                                <h4 class="text-sm font-medium text-white line-clamp-1 mb-1" title="${source.title}">${source.title}</h4>
+                            </div>
+                            <a href="${source.url}" target="_blank" class="text-xs text-indigo-400 hover:text-indigo-300 inline-flex items-center space-x-1 font-medium mt-3 transition-colors truncate">
+                                <span>Acessar Confluence</span>
+                                <span>→</span>
+                            </a>
+                        `;
+                        sourcesContainer.appendChild(card);
+                    });
+                } else {
+                    sourcesContainer.innerHTML = `<p class="text-xs text-gray-500 italic">Nenhuma fonte de referência retornada para essa consulta.</p>`;
+                }
+
+                resultPanel.classList.remove('hidden');
+
+            } catch (error) {
+                clearTimeout(timeoutId);
+                console.error("Erro na busca:", error);
+
+                if (error.name === 'AbortError') {
+                    aiAnswer.innerHTML = `<span class="text-amber-400 font-medium">Timeout Excedido:</span> O servidor demorou mais de ${FRONTEND_TIMEOUT_MS / 1000} segundos para responder. O processamento da LLM local (Gemma3) atingiu o limite de espera do navegador.`;
+                } else {
+                    aiAnswer.innerHTML = `<span class="text-red-400 font-medium">Falha na comunicação com o servidor backend:</span> ${error.message}. Garanta que o servidor Uvicorn esteja rodando na porta 8000.`;
+                }
+                resultPanel.classList.remove('hidden');
+            } finally {
+                loadingState.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -3,7 +3,6 @@ import os
 import asyncio
 import aiohttp
 from bs4 import BeautifulSoup
-from llama_index.core import Document
 
 # Create output folder if it doesn't exist
 os.makedirs("files", exist_ok=True)
@@ -65,10 +64,8 @@ async def processar_pagina(session, url_atual, url_base, paginas_visitadas, pagi
         if not texto_limpo.strip():
             return
 
-        doc = Document(
-            text=texto_limpo,
-            metadata={"title": titulo, "url": url_atual, "space": "OF", "paginaId": paginaId}
-        )
+        doc = paginaId
+
 
         save_to_json({"texto": texto_limpo, "paginaId": paginaId, "title": titulo, "url": url_atual}, paginaId)
         documentos_finais.append(doc)

@@ -6,7 +6,7 @@ from tqdm import tqdm
 
 # 1. Configuration
 # Change this to the path of the folder containing your JSON files
-FOLDER_PATH = "./files"
+FOLDER_PATH = "./files_BCB"
 MODEL_NAME = "all-MiniLM-L6-v2"
 
 # Ensure the folder exists before running
@@ -43,7 +43,7 @@ for idx, file_name in enumerate(tqdm(json_files)):
 
     # Extract fields based on your new schema
     texto = data.get("texto", "").strip()
-    pagina_id = data.get("paginaId", f"unknown_id_{idx}")
+    pagina_id = file_name.split(".")[0]
     title = data.get("title", "Untitled Document").strip()
     url = data.get("url", "")
 
